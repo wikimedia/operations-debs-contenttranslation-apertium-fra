@@ -1,0 +1,79 @@
+DELIMITERS = "<.>" "<!>" "<?>" "<..>" "<...>" "<¶>" ;
+SOFT-DELIMITERS = "<,>" ;
+OPTIONS += no-inline-sets no-inline-templates ;
+
+SETS
+
+LIST BOS = (>>>) ;
+LIST EOS = (<<<) ;
+
+LIST V = vblex ;
+LIST Haver = vbhaver ;
+LIST Cm = cm ;
+LIST Subj = subj ;
+LIST Prop = np ;
+LIST Adv = adv ;
+LIST Prs = prs ;
+LIST Pro = pro ;
+LIST Imper = imp ;
+LIST Pri = pri ;
+LIST Prn = prn ;
+LIST N = n ;
+
+LIST Interr = itg ;
+LIST Rel = rel ;
+
+LIST Fin = pri prs pii ifi pis cni imp ;
+LIST Inf = inf ;
+LIST PrfPrc = pp ;
+
+LIST Que = "que" ;
+LIST Qui = "qui" ;
+LIST Avoir = "avoir" ; 
+LIST Le = "le" ;
+LIST Fait = "<fait>"i ;
+LIST Est = "<est>"i ;
+LIST Il = "il" ;
+LIST Pas = "pas" ; 
+LIST Ne = "ne" ; 
+LIST Devoir = "devoir" ;
+LIST Être = "être" ;
+
+LIST Title = "<[A-Z][a-z]\+>"r ;
+
+SET QUI-QUE = Que | Qui ;
+
+SET CLB = Subj | Cm ;
+
+SECTION
+
+SELECT Prop IF (NOT -1 BOS) (0 Title) ;
+  ## Lorsque Marie a fini de compter, elle regarde autour d'elle.
+
+REMOVE Prs IF (NOT -1* QUI-QUE BARRIER CLB); 
+
+REMOVE Pro IF (0 Le) (NOT 1 V) ;
+  ## Le chien aime jouer avec les deux enfants.
+
+REMOVE N IF (0 Fait) (-1 Il) ;
+  ## Il fait beau aujourd'hui, il fait très chaud.
+
+REMOVE N IF (0 Est) (-1 Interr OR Rel) ;
+  ## Où est Jean ?
+
+SELECT Adv IF (0 Pas) (-1 V LINK -1 Ne) ;
+  ## Ils n'ont pas pu jouer dehors.
+
+REMOVE Fin IF (0 Fin OR Prop) (0 Title) (1C Fin) ;
+  ## Marie pense qu'elle a vu où Jean est allé :
+
+SELECT Inf IF (0 Être) (-1 Devoir) ;
+  ## Ce doit être Jean ! 
+
+SELECT Haver IF (0 Avoir) (1 PrfPrc) ;
+  ## Est-ce que tu as vu Jean ?
+
+SELECT Haver IF (0 Avoir) (2 PrfPrc) ;
+  ## As-tu vu Jean ?
+  
+REMOVE Imper IF (-1 Prn) ;
