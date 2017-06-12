@@ -2,8 +2,8 @@
 ## Makefile for apertium-fra
 ###############################################################################
 
-RELEASE=1.0
-VERSION=1.0.0
+RELEASE=1.1
+VERSION=1.1.0
 LANG1=fra
 BASENAME=apertium-$(LANG1)
 
@@ -27,11 +27,11 @@ $(LANG1).xsl: $(BASENAME).$(LANG1).metadix buscaPar.xsl
 	xsltproc $< $(BASENAME).$(LANG1).metadix > $@.tmp
 	mv $@.tmp $@
 
-$(LANG1).autogen.bin: .deps/$(LANG1).dix
+$(LANG1).autogen.bin: .deps/$(LANG1).dix $(BASENAME).$(LANG1).acx
 	apertium-validate-dictionary $<
 	lt-comp rl $< $@ $(BASENAME).$(LANG1).acx
 
-$(LANG1).automorf.bin: .deps/$(LANG1).dix
+$(LANG1).automorf.bin: .deps/$(LANG1).dix $(BASENAME).$(LANG1).acx
 	apertium-validate-dictionary $<
 	lt-comp lr $< $@ $(BASENAME).$(LANG1).acx
 
@@ -86,7 +86,7 @@ modes/$(LANG1)-morph.mode: modes.xml
 
 noinst_DATA=modes/$(LANG1)-morph.mode
 
-install-data-local:
+install-data-local: install-modes
 	test -d $(DESTDIR)$(apertium_fra_srcdir) || mkdir -p $(DESTDIR)$(apertium_fra_srcdir)
 	$(INSTALL_DATA) $(BASENAME).$(LANG1).metadix $(DESTDIR)$(apertium_fra_srcdir)
 	$(INSTALL_DATA) $(BASENAME).$(LANG1).rlx $(DESTDIR)$(apertium_fra_srcdir)
@@ -105,4 +105,3 @@ test: all
 	@echo "TODO test analysis results" > .test-ref
 	@diff .test-ref .test-mt
 	@rm .test-ref .test-mt
-
