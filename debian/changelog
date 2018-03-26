@@ -1,3 +1,12 @@
+apertium-fra (1.2.0~r84327-1+wmf1) jessie-wikimedia; urgency=low
+
+  * New upstream release.
+  * Updated dependency on apertium and cg3.
+  * Updated debian/copyright.
+  * Updated debian/watch file.
+
+ -- Kartik Mistry <kartik@debian.org>  Mon, 26 Mar 2018 11:33:31 +0530
+
 apertium-fra (1.1.0~r78695-1+wmf2) jessie-wikimedia; urgency=low
 
   * Depends on cg3 (>= 1.0.0~r12254)
