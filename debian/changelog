@@ -1,3 +1,10 @@
+apertium-fra (1.5.0-1+wmf1) jessie-wikimedia; urgency=low
+
+  * New upstream release.
+  * Depends on apertium >= 3.5.2
+
+ -- Kartik Mistry <kartik@debian.org>  Mon, 22 Oct 2018 09:17:31 +0530
+
 apertium-fra (1.2.0~r84327-1+wmf1) jessie-wikimedia; urgency=low
 
   * New upstream release.
