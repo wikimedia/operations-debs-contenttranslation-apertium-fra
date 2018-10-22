@@ -32,6 +32,7 @@ LIST CnjSub = cnjsub ;
 LIST Num = num ;
 LIST Itg = itg ;
 LIST Pro = pro ;
+LIST Enc = enc ;
 LIST Tn = tn ;
 LIST Imper = imp ;
 LIST Pri = pri ;
@@ -49,6 +50,7 @@ LIST Masc_strict = m ;
 LIST Fem_strict = f ;
 LIST Masc = m mf ;
 LIST Fem = f mf ;
+LIST Mf = mf ;
 LIST Sg_strict = sg ;
 LIST Pl_strict = pl ;
 LIST Sg = sg sp ;
@@ -59,10 +61,12 @@ SET MascSg = (m sg) OR (m sp) OR (mf sg) OR (mf sp) ;
 SET MascPl = (m pl) OR (m sp) OR (mf pl) OR (mf sp) ;
 SET FemSg = (f sg) OR (f sp) OR (mf sg) OR (mf sp) ;
 SET FemPl = (f pl) OR (f sp) OR (mf pl) OR (mf sp) ;
+LIST M_F = m f ;
 
 LIST P1 = p1 ;
 LIST P2 = p2 ;
 LIST P3 = p3 ;
+LIST Pers = p1 p2 p3 ;
 LIST Sg1 = (p1 sg) ;
 LIST Sg2 = (p2 sg) ;
 LIST VSg1 = (vblex p1 sg) (vbser p1 sg) (vbhaver p1 sg) (vbmod p1 sg);
@@ -73,6 +77,7 @@ LIST VPl2 = (vblex p2 pl) (vbser p2 pl) (vbhaver p2 pl) (vbmod p2 pl);
 LIST VPl3 = (vblex p3 pl) (vbser p3 pl) (vbhaver p3 pl) (vbmod p3 pl);
 
 LIST Fin = pri prs pii ifi pis cni imp ;
+LIST Ind = pri pii ifi ;
 LIST Ifi = ifi ;
 LIST Pri = pri ;
 LIST Prs = prs ;
@@ -84,31 +89,40 @@ LIST unknown = ("\\*.*"r) ;
 LIST unknownMajIni = ("\\*[A-ZÀÁÈÉíÒÓÚÜÇ].*"r) ;
 
 LIST Mon_Ton_Son = "mon" "ton" "son" ;
+LIST Son = "son" ;
 LIST Que = "que" ;
 LIST Qui = "qui" ;
-LIST Avoir = "avoir" ; 
-LIST Savoir = "savoir" ; 
-LIST Saurer = "saurer" ; 
+LIST À = "à" ;
+LIST Avoir = "avoir" ;
+LIST Savoir = "savoir" ;
+LIST Saurer = "saurer" ;
 LIST Demi_pre = "demi_pre" ;
-LIST Demi_post = "demi_post" ; 
+LIST Demi_post = "demi_post" ;
 LIST Le = "le" ;
+LIST Un = "un" ;
+LIST Aucun = "aucun" ;
 LIST Fait = "<fait>"i ;
 LIST Est = "<est>"i ;
-LIST Je = "je" ;
-LIST Tu = "tu" ;
-LIST Il = "il" ;
+LIST Je = "je" "moi je";
+LIST Tu = "tu" "toi tu";
+LIST Il = "il"  "lui il";
+LIST On = "on" ;
 LIST Nous = "nous" ;
 LIST Vous = "vous" ;
 LIST Lui = "lui" ;
+LIST Leur = "leur" ;
 LIST Eux = "eux" ;
-LIST En = "en" ; 
-LIST Pas = "pas" ; 
-LIST Ne = "ne" ; 
-LIST Aussi = "aussi" ; 
-LIST Même = "même" ; 
+LIST En = "en" ;
+LIST Pour = "pour" ;
+LIST Pas = "pas" ;
+LIST Rien = "rien" ;
+LIST Ne = "ne" ;
+LIST Aussi = "aussi" ;
+LIST Même = "même" ;
 LIST Plus = "plus" ;
 LIST Devoir = "devoir" ;
 LIST Être = "être" ;
+LIST Si = "si" ;
 
 LIST Fil = "fil" ;
 LIST Fils = "fils" ;
@@ -121,34 +135,47 @@ LIST Mille = "mille" ;
 LIST Mil = "mil" ;
 LIST Ete = "été" ;
 LIST Somme = "somme" ;
+LIST Politique = "politique" ;
 LIST Peu = "peu de" ;
 LIST Helas = "hélas" ;
 LIST Des = "dès" ;
 LIST Entre = "entre" ;
-LIST Pendant = "pendant" ; 
-LIST Or = "or" ; 
+LIST Contre = "contre" ;
+LIST Devant = "devant" ;
+LIST Pendant = "pendant" ;
+LIST Puis = "puis" ;
+LIST Or = "or" ;
 LIST Si = "si" ;
 LIST S = "<s'>"i ;
 LIST Ouvrir = "ouvrir" ;
 LIST Ouvrer = "ouvrer" ;
-LIST Devant = "devant" ;
+LIST Continu = "continu" ;
+LIST Continuer = "continuer" ;
 LIST Mystique_pers = "mystique_pers" ;
 LIST Mystique_syst = "mystique_syst" ;
 LIST Pupille_pers = "pupille_pers" ;
 LIST Pupille_anat = "pupille_anat" ;
+LIST Mai = "mai" ;
+LIST Mais = "mais" ;
+LIST Rose = "rose" ;
+LIST Tout = "tout" ;
 
 LIST À = "à" ;
 
 SET CM = (cm) OR (lpar) OR (rpar) OR ("<;>") ;
 LIST Excl = "!" ;
 
-LIST Title = "<[A-Z][a-z]\+>"r ;
+LIST Title = "<[A-ZÉÈÊ][a-zâéèêîôû]\+>"r ;
 LIST ConsInitiale = "<[BCDFGJKLMNPQRSTVWXZbcdfgjklmnpqrstvwxz].*>"r ;
+LIST Majusc = "<[A-ZÉÈÊ][A-ZÂÉÈÊÎÔÛ]*>"r ;
+LIST MajuscInitiale = "<[A-ZÉÈÊ][a-zâéèêîôû]*>"r ;
 
 SET Ant = (np ant) ;
 SET Cog = (np cog) ;
 SET Ant_Cog = Ant OR Cog ;
 SET Top = (np top) ;
+SET Al = (al) ;
+SET Acr = (acr) ;
 
 SET DetDef = (det def) ;
 SET DetInd = (det ind) ;
@@ -166,6 +193,8 @@ SET Cnj_Rel_End_NoInf = BOS OR CnjCoo OR CnjSub OR CnjAdv OR Rel ;
 
 # verbs Vblex que típicament impliquen subjuntiu
 SET VerbSubj = ("vouloir") OR ("désirer") OR ("proposer") OR ("plaire") OR ("exiger") OR ("réclamer") OR ("demander") OR ("espérer") ;
+# verbs Vblex que típicament impliquen indicatiu
+SET VerbInd = ("dire") OR ("annoncer") OR ("penser") OR ("croire") ;
 
 SET Trencat = ("tiers") OR ("quart") ;
 SET Barrera_Inicial_SN = EOS OR Prep OR CnjSub OR CnjAdv OR Verb OR Rel ;	# Verb és perillós per la ambigüitat, però en general, prolífic
@@ -177,8 +206,10 @@ SECTION
 
 REMOVE Cog IF (-1 DetDef) (0 Cog) ;
 REMOVE Cog IF (-1 DetInd) (0 Cog) ;
+REMOVE Cog IF (-1 En) (0 Cog) ;
 REMOVE Ant IF (-1 DetDef) (0 Ant) ;
 REMOVE Ant IF (-1 DetInd) (0 Ant) ;
+REMOVE Ant IF (-1 En) (0 Ant) ;
 
 SELECT Ant IF (0 Ant) (1C Ant) ;
 	# Jean-René
@@ -189,7 +220,8 @@ REMOVE Top IF (0 Cog OR Ant OR Top) (1 unknown) ;
 SELECT Ant IF (NOT -1 Cog OR Ant) (0C Cog OR Ant) (1 unknown) ;
 	## Léon Verguet
 
-SELECT NP IF (0 NP LINK NOT 0 Prep OR Prn OR Det) (-1 BOS) (NOT 0 ("grand") OR ("fort")) ;
+SELECT NP IF (0 NP LINK NOT 0 Prep OR Prn OR Det) (-1 BOS) (NOT 0 ("grand") OR ("fort")) (NOT 0 V + $$Pers + $$Sg_Pl LINK 1 Tn + $$Pers + $$Sg_Pl) ;
+	## Sais-tu
 #SELECT NP IF (0 NP) (0 N OR A OR PP) (-1 BOS) (1C Verb) ;		# René vient
 #SELECT NP IF (0 NP) (0 N OR A OR PP) (-1 BOS) (1 Adv) (2C Verb) ;	# René ne vient pas
 
@@ -208,17 +240,28 @@ REMOVE V IF (-2/* Prep) (-1C A) (0C A OR V) ;
 SELECT Prop IF (NOT -1 BOS) (0 Title) ;
   ## Lorsque Marie a fini de compter, elle regarde autour d'elle.
 
-#REMOVE Prs IF (NOT -1* QUI-QUE BARRIER CLB); 
-
-REMOVE Pro IF (0 Le) (NOT 1 Verb) ;
-  ## Le chien aime jouer avec les deux enfants.
+#REMOVE Prs IF (NOT -1* QUI-QUE BARRIER CLB);
 
 REMOVE N IF (0 Fait) (-1 Il) ;
   ## Il fait beau aujourd'hui, il fait très chaud.
+SELECT V IF (-1C Adv) (0 Fait) ;
+REMOVE PP IF (-1 Ne) (0 Fait) (1 Que) ;
+  ## ne fait que
 
 REMOVE N IF (0 Est) (-1 Interr OR Rel) ;
 REMOVE A IF (0 Est) (-1 Interr OR Rel) ;
   ## Où est Jean ?
+SELECT Ser IF (0 Est) (1 Adv) ;
+SELECT Ser IF (0 Est) (1 ("en")) (2 N); ## est en conséquence
+SELECT Ser IF (0 Est) (1 A) ;
+SELECT Ser IF (0 Est) (1 PP) ;
+SELECT Ser IF (0 Est) (1 Det) ;
+SELECT Ser IF (0 Est) (1 NP) ;
+SELECT Ser IF (0 Est) (1 unknown) ;
+SELECT Ser IF (NOT -1 DetDef OR ("limite") OR ("frontière") OR ("face") OR ("façade") OR ("côte") OR ("côté")) (0 Est) (NOT 0 MajuscInitiale) ;
+
+SELECT A IF (-1 Top) (0 Est) (0 MajuscInitiale) ;
+  ## Jérusalem Est
 
 SELECT Adv IF (0 Pas) (-1 V LINK -1 Ne) ;
   ## Ils n'ont pas pu jouer dehors.
@@ -228,15 +271,23 @@ REMOVE Fin IF (0 Fin OR Prop) (0 Title) (1C Fin) ;
 REMOVE Fin IF (-1C V LINK NOT 0 PP) (0 Fin OR N OR A OR PP OR Det) ;
   ## tenir compte de
 
+SELECT Vbmod (0 Devoir) (1 Inf) ;
+REMOVE Vbmod (0 Devoir + PP) (-1 Ser) ;
+REMOVE Vbmod (0 Devoir) (1 ("à")) ;
+
 REMOVE Ifi IF (0 Pri + P1 OR Ifi + P1) ;
 REMOVE Ifi IF (0 Pri + P2 OR Ifi + P2) ;
   ## je vis, tu vis
 
 SELECT Inf IF (0 Être) (-1 Vbmod) ;
-  ## Ce doit être Jean ! 
-REMOVE N IF (-1 N OR A OR Prn) (0C Est) (1 A OR PP) ;
-REMOVE A IF (-1 N OR A OR Prn) (0C Est) (1 A OR PP) ;
+  ## Ce doit être Jean !
+REMOVE N IF (-1 N OR A OR Prn OR CM) (0C Est) (1 A OR PP OR Det) ;
+REMOVE A IF (-1 N OR A OR Prn OR CM) (0C Est) (1 A OR PP OR Det) ;
   ## la demande est suffisante
+REMOVE N IF (0C Est) (1C PP) ;
+REMOVE A IF (0C Est) (1C PP) ;
+  ## est lancée
+  ## est venu
 REMOVE N IF (-1 N OR A OR Prn) (0C Est) (1 Adv OR PreAdv) (2 A OR PP) ;
 REMOVE A IF (-1 N OR A OR Prn) (0C Est) (1 Adv OR PreAdv) (2 A OR PP) ;
   ## est très satisfait
@@ -246,6 +297,13 @@ REMOVE N IF (-1 NP OR unknown) (0C ("<est>")) ;
 REMOVE A IF (-1 NP OR unknown) (0C ("<est>")) ;
 SELECT N IF (-2 ("à")) (-1 Det + Def) (0C Est) ;
 
+#SELECT N IF (-1/* Det) (0C N OR A) (0 Title) (NOT 0 ("grand") OR ("premier") OR ("segonde") OR ("saint")) ;
+SELECT N IF (-1/* Det + MascSg) (0C N OR A) (0 N + MascSg) (0 Title) (NOT 0 ("grand") OR ("premier") OR ("segonde") OR ("saint")) ;
+SELECT N IF (-1/* Det + FemSg) (0C N OR A) (0 N + FemSg) (0 Title) (NOT 0 ("grand") OR ("premier") OR ("segonde") OR ("saint")) ;
+SELECT N IF (-1/* Det + MascPl) (0C N OR A) (0 N + MascPl) (0 Title) (NOT 0 ("grand") OR ("premier") OR ("segonde") OR ("saint")) ;
+SELECT N IF (-1/* Det + FemPl) (0C N OR A) (0 N + FemPl) (0 Title) (NOT 0 ("grand") OR ("premier") OR ("segonde") OR ("saint")) ;
+  ## Des Algériens sont tués
+  ## le Physique et le Figuré
 
 SELECT Inf IF (0 Être) (-1 Pro) (-2 Vbmod) ;
   ## Le spécialiste lorrain du 10 kilomètres peut l'être.
@@ -272,11 +330,19 @@ SELECT V IF (NOT -1 ("y")) (0C Haver OR V) (1 Det) (2 PreDet OR PreAdv OR Adv) (
   ## Elle a un tout petit secret
   ## Elle a un très petit secret
 
-SELECT Haver IF (0 Avoir) (1 Tn) (2 PP) ;
+SELECT V IF (0 Avoir) (1 ("plus") OR ("moins") OR ("beaucoup") OR ("peu") OR ("un peu") OR ("assez")) (2 ("de")) ;
+SELECT V IF (0 Avoir) (1 Adv) (2 ("plus") OR ("moins") OR ("beaucoup") OR ("peu") OR ("un peu") OR ("assez")) (3 ("de")) ;
+SELECT V IF (0 Avoir) (1 Adv) (2 Adv) (3 ("plus") OR ("moins") OR ("beaucoup") OR ("peu") OR ("un peu") OR ("assez")) (4 ("de")) ;
+SELECT V IF (-1 ("en")) (0 Avoir) (1 ("plus") OR ("moins") OR ("beaucoup") OR ("peu") OR ("un peu") OR ("assez")) ;
+SELECT V IF (-1 ("en")) (0 Avoir) (1 Adv) (2 ("plus") OR ("moins") OR ("beaucoup") OR ("peu") OR ("un peu") OR ("assez")) ;
+SELECT V IF (-1 ("en")) (0 Avoir) (1 Adv) (2 Adv) (3 ("plus") OR ("moins") OR ("beaucoup") OR ("peu") OR ("un peu") OR ("assez")) ;
+
+REMOVE N IF (-1 ("plus") OR ("moins") OR ("beaucoup") OR ("peu") OR ("un peu") OR ("assez")) (0 N OR A) ;
+
   ## As-tu vu Jean ?
 SELECT Haver IF (0 Avoir) (1 Adv) (2 PP) ;
   ## n'ont pas vu, n'ont jamais vu
-  
+
 SELECT V IF (0 Avoir) (1C Prep) ;
   ## ayant pour ami
 
@@ -289,7 +355,7 @@ SELECT V IF (0 Avoir) (1 EOS) ;
 
 SELECT Prep IF (-1 BOS) (0 Avoir) (0 À) ;
   ## A la téle
- 
+
 SELECT Itg IF (-1 BOS) (0C Itg OR Rel OR CnjSub) (0 Title) ;
   ## Qui s'adresse
 SELECT Itg IF (-2 BOS) (-1 Prep) (0C Itg OR Rel OR CnjSub) ;
@@ -298,37 +364,99 @@ SELECT Itg IF (-1C V LINK NOT 0 PP) (0C Itg OR Rel) ;
   ## je me demande qui
 SELECT Itg IF (-2C V LINK NOT 0 PP) (-1 Adv) (0C Itg OR Rel) ;
   ## je ne demande pas qui
-  
-REMOVE Imper IF (NOT 1* Excl) ;
-REMOVE Imper IF (-1 Prn) ;
 
-REMOVE A (*-1 Cnj_Rel_End_NoInf) (0C Verb OR A LINK NOT *1 Verb) ;
-REMOVE A (*-1 Cnj_Rel_End_NoInf) (0C Verb OR N LINK NOT *1 Verb) ;
+SELECT Itg IF (0 Adv OR Prn) (1 ("est-ce que")) ;
+  ## quand est-ce que
+  ## qui est-ce que
+SELECT Itg IF (0 Adv OR Prn) (1 V + P1 + Sg) (2 Tn + P1 + Sg) ;
+SELECT Itg IF (0 Adv OR Prn) (1 V + P2 + Sg) (2 Tn + P2 + Sg) ;
+SELECT Itg IF (0 Adv OR Prn) (1 V + P3 + Sg) (2 Tn + P3 + Sg) ;
+SELECT Itg IF (0 Adv OR Prn) (1 V + P1 + Pl) (2 Tn + P1 + Pl) ;
+SELECT Itg IF (0 Adv OR Prn) (1 V + P2 + Pl) (2 Tn + P2 + Pl) ;
+SELECT Itg IF (0 Adv OR Prn) (1 V + P3 + Pl) (2 Tn + P3 + Pl) ;
+  ## quand veux-tu
+
+REMOVE Imper IF (NOT 1* Excl) ;
+REMOVE Imper IF (-1 Tn) (NOT -1 Lui) ;
+REMOVE Imper IF (-2 Tn) (NOT -2 Lui) (-1 Adv) ;
+
+REMOVE Imper IF (-1 Ant OR Cog OR unknown) (0 P3) ;
+REMOVE Imper IF (-2 Ant OR Cog OR unknown) (-1 Adv OR Pro) (0 P3) ;
+REMOVE Imper IF (-3 Ant OR Cog OR unknown) (-2 Adv) (-1 Pro) (0 P3) ;
+
+SELECT Imper IF (-1 BOS) (1 Excl) ;
+SELECT Imper IF (-2 BOS) (-1 Ne) (1 Adv OR Rien) (2 Excl) ;
+SELECT Imper IF (-3 BOS) (-2 Ne) (-1 Pro) (1 Adv OR Rien) (2 Excl) ;
+
+#REMOVE A (NOT *-1 Verb BARRIER Cnj_Rel_End_NoInf) (0C Verb OR A LINK NOT *1 Verb) ;
+#REMOVE N (NOT *-1 Verb BARRIER Cnj_Rel_End_NoInf) (0C Verb OR N LINK NOT *1 Verb) ;
+#REMOVE A (NOT *-1 Verb) (0C Verb OR A LINK NOT *1 Verb) ;
+#REMOVE N (NOT *-1 Verb) (0C Verb OR N LINK NOT *1 Verb) ;
+  ## Ces règles ne marchent pas pour des tas de phrases dans la presse où il n'y a pas de verbe
   ## Une œuvre romanesque qui célèbre à sa façon l'effervescence de l'Art nouveau.
+  ## il était très fier,
+  ## Peut-on envisager dans l'avenir une subvention égale au niveau
+SELECT Verb (-1 ("qui") OR ("que")) (0C Verb OR A) ;
+  ## qui célèbre
+SELECT Verb (-1 NP) (0C Verb OR A) ;
+  ## Cooper illustre
+
 REMOVE Verb (OC Verb OR A OR N LINK NOT 0 Inf) (1 Être LINK 0 P1 OR P2 OR P3) ;
   ## Si la demande est suffisante
+REMOVE Verb (OC Verb OR A) (0 Verb) (0 A) (-1C PreAdv) ;
+  ## il était très fier,
 
 # elección de subjuntivo después de "que"
 SELECT Prs (*-1 Que BARRIER Cnj_Rel_End) (*-1 VerbSubj LINK NOT 1 Inf) (0C Verb) ;
 	# Compte: quiero decirle que me parece muy bien
+REMOVE Prs (*-1 Que BARRIER Cnj_Rel_End) (*-1 VerbInd LINK NOT 1 Inf) (0C Verb) (0 Pri) ;
 #REMOVE Prs (*-1 >>> BARRIER CnjAdv OR CnjSub OR Rel) (NOT -1 ("no") OR ("No") OR ("nunca") OR ("Nunca")) (0C Verb) ;
-SELECT Prs (*-1 ("être# .*"r) LINK 1 ("que")) (0C Verb) ;
-SELECT Prs (*-1 ("être") LINK 1 A LINK NOT 0 ("vrai") LINK 1 ("que")) (0C Verb) ;
-SELECT Prs (*-1 ("être") LINK 1 Adv_PreAdv LINK 1 A LINK 1 ("que")) (0C Verb) ;
+SELECT Prs (*-1 ("être# .*"r) LINK 1 Que) (0C Verb) ;
+SELECT Prs (*-1 ("être") LINK 1 A LINK NOT 0 ("vrai") LINK 1 Que) (0C Verb) ;
+SELECT Prs (*-1 ("être") LINK 1 Adv_PreAdv LINK 1 A LINK 1 Que) (0C Verb) ;
 	# es común que la persona sienta la certeza
 	# es posible que vengas.
 	# es bueno que vengas
 	# però: són tan variades que en cadascuna d'elles es poden observar patrons
 #REMOVE Prs (NOT *-1 VerbSubj LINK 1 Que) (0C Verb) ;
-REMOVE Prs (NOT *-1 Que) (0 Verb) ;
+REMOVE Prs (NOT *-1 Que + CnjSub OR ("avant que") OR ("après que")) (0 Verb) ;
+  ## Cette règle a des exceptions: La peur que cette rencontre *change* la face du monde préoccupe l'Europe
+#REMOVE Prs (NOT *-1 Que + CnjSub OR ("avant que") OR ("après que") CBARRIER Ind) (0 Verb) ;
+  ## Avant qu'il ne vienne chez nous, Stephen Hillenburg refuse plusieurs propositions
 
-SELECT Fin IF (0C N OR Fin) (-1 N LINK -1 Prep OR Det) (NOT -1 ("son")) (NOT 1 N OR A) ;
+REMOVE Ifi (0 Pri + P3 + Sg) (0 Ifi + P3 + Sg) (*0C Pri) ;
+REMOVE Ifi (0 Pri + P3 + Sg) (0 Ifi + P3 + Sg) (**-1C Pri) ;	# VÉRIFIER: Cette règle ne sembla pas marcher
+  ## Il s'agit
+
+#SELECT Fin IF (0C N OR Fin) (-1 N LINK -1 Prep OR Det) (NOT -1 ("son")) (NOT 1 N OR A) ;
+SELECT Fin IF (0C N OR Fin) (-1 N LINK -1 Det) (NOT -1 Son OR A) (NOT 1 N OR A) ;
   ## Les poules du couvent couvent
+  ## leurs grandes forces
 
 SELECT Fils IF (0C Fil OR Fils) (-1 Sg) ;
   ## Avec lequel elle aura un fils.
 
 SELECT Fois IF (0C Foi OR Fois) ;
+
+SELECT Adv IF (0 Plus) (1 ("de") OR Que) ;
+
+SELECT N IF (0 ("président")) (1 ("de")) ;
+
+SELECT Det + MascSg IF (NOT -1 Det) (0 Son + MascSg) (1 N + MascSg LINK NOT 0 A) ;
+SELECT Det + FemSg IF (NOT -1 Det) (0 Son + FemSg) (1 N + FemSg LINK NOT 0 A) ;
+SELECT Det + MascPl IF (NOT -1 Det) (0 Son + MascPl) (1 N + MascPl LINK NOT 0 A) ;
+SELECT Det + FemPl IF (NOT -1 Det) (0 Son + FemPl) (1 N + FemPl LINK NOT 0 A) ;
+SELECT Det + MascSg IF (NOT -1 Det) (0 Son + MascSg) (1 A + MascSg) (2 N + MascSg) ;
+SELECT Det + FemSg IF (NOT -1 Det) (0 Son + FemSg) (1 A + FemSg) (2 N + FemSg) ;
+SELECT Det + MascPl IF (NOT -1 Det) (0 Son + MascPl) (1 A + MascPl) (2 N + MascPl) ;
+SELECT Det + FemPl IF (NOT -1 Det) (0 Son + FemPl) (1 A + FemPl) (2 N + FemPl) ;
+
+SELECT Fem IF (0 Rose + Pl) (NOT 1 Masc_strict) ;
+  ## la vallée des roses
+
+SELECT N + Mf IF (-1/* Det + Masc_strict) (0 Politique) ;
+SELECT N + Mf IF (-1/* Det) (0 Politique) (1 A + Masc_strict) ;
+REMOVE N + Mf IF (NOT -1/* Det + Masc_strict) (0 Politique) (NOT 1 A + Masc_strict) ;
 
 REMOVE Ouvrer IF (0 Ouvrir OR Ouvrer) ;
 
@@ -354,28 +482,73 @@ REMOVE Pupille_pers IF (-1 Det + Sg_strict + Fem_strict) (0 Pupille_pers) ;
 REMOVE Pupille_pers IF (1 A + Sg_strict + Fem_strict) (0 Pupille_pers) ;
 REMOVE Pupille_anat IF (-1/* Det + Pl_strict) (0 Pupille_anat) ;
 
+SELECT N IF (0 ("conseiller")) (1 ("général")) ;
+
+REMOVE Mai IF (0 Mai or Mais) ;
+
+SELECT PreDet IF (0 Tout + Pl) (1 DetDef + Pl) ;
+  ## . Tous les Etats
+
 SELECT Demi_pre IF (0 Demi_pre OR Demi_post) (1 N) ;
 REMOVE Demi_pre IF (0 Demi_pre OR Demi_post) (NOT 1 N) ;
+
+SELECT Cog IF (-2 Ant) (-1 ("de")) (0 ("Orange")) ;
+SELECT Cog IF (-3 Ant) (-2 Num) (-1 ("de")) (0 ("Orange")) ;
+SELECT Al IF (0 ("Orange")) (1 ("SA") OR Top) ;
+
+SELECT A IF (0 ("prochain") LINK NOT -1 Det) ;
+SELECT A IF (0 ("prochain")) (-1 Det) (1 N) ;
+
+SELECT N IF (0 ("dame") + Pl) (-1 ("finale") OR ("demi-finale") OR ("tournoi") OR ("championat")) ;
+
+#SELECT Det IF (0 Leur) (1 N OR A OR Adv) ;
+#SELECT Pron IF (0 Leur) (1 Verb) ;
+#REMOVE N IF (0 Leur) (1 unknown) ;
+REMOVE N IF (0 Leur) ;
+
+SELECT Prn IF (0 ("beaucoup") OR ("peu")) (1 Verb + P3 + Pl) ;
+SELECT Prn IF (0 ("beaucoup") OR ("peu")) (1 Adv) (2 Verb + P3 + Pl) ;
+REMOVE Prn IF (0 ("beaucoup") OR ("peu")) (NOT 1 Verb + P3 + Pl OR Adv) ;
+SELECT PreAdv IF (0 ("peu")) (1C A) ;
+
+SELECT PreAdv IF (0 ("quelque") + PreAdv) (1 A) (2 Que) ;
+SELECT Adv IF (0 ("quelque") + Adv) (1 Num) ;
+
+SELECT N IF (-1/* Det) (0 ("rose")) ;
+SELECT N IF (-1 Num) (0 ("rose")) ;
+REMOVE Masc_strict IF (0 ("rose") + N + Pl) (NOT -1 Masc_strict) ;
 
 SELECT Masc IF (-2 ("à") OR ("pendant") OR ("après") OR ("avant")) (-1C Num) (0 Tour) (NOT 1 A) ;
   ## à 7 tours de la fin
 SELECT Masc IF (-1C Num) (0 Tour) (1 ("avant")) ;
 
-SELECT Prep IF (-1C Verb) (0 Devant) (1 Ant_Cog) ;
+SELECT Prep IF (-1C Verb) (0 Devant OR Contre) (1 Ant_Cog) ;
   ## Il s'impose devant Matthieu
-SELECT Prep IF (-1C Verb) (0 Devant) (1 Pro OR Tn) ;
+SELECT Prep IF (-1C Verb) (0 Devant OR Contre) (1 Pro OR Tn) ;
   ## Il s'impose devant lui
+SELECT Prep IF (NOT -1 Verb OR Pas) (0 Pour) ;
 
 SELECT N IF (-1 Num) (0C N OR V) ;
   ## 9 combats
 SELECT N IF (-1 DetDef OR CM) (0C N OR Verb) (1 Prep OR CM) ;
   ## que le pouvoir de
-  ## , conseiller regional, 
+  ## , conseiller regional,
 SELECT N IF (-1 Prep) (-1/* DetDef) (0C N OR Verb) ;
   ## du commandant Klein
 SELECT N IF (-2 Prep) (-1 DetDef) (0C N OR Verb LINK NOT 0 Inf) ;
+REMOVE Pers IF (-2 Prep) (-1 Det) (0C N OR Verb LINK 0 Pers) ;
+  ## à leurs armes
 
-SELECT Verb IF (-1 ("ne")) (0C N OR Verb) (1 ("que")) ;
+REMOVE N IF (-1 Rel) (0 N OR Verb) ;
+  ## ce qui limite le nombre
+
+REMOVE V IF (0 N OR V) (1C Ger) ;
+  ## mais la série devenant de plus en plus rentable
+
+SELECT N IF (-1 ("faire")) (0 ("partie")) ;
+SELECT N IF (-2 ("faire")) (-1 Adv) (0 ("partie")) ;
+
+SELECT Verb IF (-1 ("ne")) (0C N OR Verb) (1 Que) ;
   ## le groupe ne demande qu'à
 SELECT Verb IF (-1 ("ne")) (0C N OR Verb) (1 ("pas") OR ("jamais")) ;
   ## ne limite pas
@@ -383,8 +556,8 @@ SELECT Verb IF (-2 ("ne")) (-1 Pro) (0C N OR Verb) (1 ("pas") OR ("jamais")) ;
   ## ne se limite pas
 SELECT Verb IF (-1 CM) (0C N OR Verb) (1 Det) (2 N) ;
   ## , demande la creation de
-SELECT Verb IF (-1 ("on")) (0C N OR Verb) (0 Verb + P3 + Sg) ;
-SELECT P3 IF (-1 ("on")) (0C N OR Verb) (0 Verb + P3 + Sg) ;
+SELECT Verb IF (-1 On) (0C N OR Verb) (0 Verb + P3 + Sg) ;
+SELECT P3 IF (-1 On) (0C N OR Verb) (0 Verb + P3 + Sg) ;
   ## on compte
 
 REMOVE Fin IF (-1 Ser) (0C Noun_Adj_PP OR Verb + Fin) ;
@@ -400,9 +573,10 @@ SELECT N IF (NOT -1 Prn) (0 ("place")) (1 NP OR unknownMajIni) ;
   ## place Saussure
 SELECT N IF (-1 BOS) (0 ("aller")) (1 (":")) ;
   ## Aller :
-REMOVE Fin IF (-1 BOS) (0 N OR Fin) ;
+REMOVE Fin IF (-1 BOS) (0 N OR Fin) (NOT 1 Tn);
   ## Groupe A, Taille 48, Série 1
-SELECT N IF (-1 BOS) (0C Noun_Adj_PP) (1C Prep) ;
+  ## Pense-t-il
+SELECT N IF (-1 BOS) (0C Noun_Adj_PP) (1C Prep OR Pour) ;
   ## Remise des coupes
 REMOVE Fin IF (-1C PreAdv) (0 A OR Fin) ;
   ## la très célèbre Pietà
@@ -434,6 +608,37 @@ REMOVE N IF (-1 ("de")) (0 ("plus")) ;
 
 SELECT CnjSub IF (-2 ("plus") OR ("moins")) (-1 A OR PP OR Adv) (0 Que) ;
   ## plus rapide que moi
+SELECT CnjSub IF (-2 ("tel")) (0 Que) ;
+  ## tels que
+
+SELECT Rel IF (-1 CM) (0 Que OR Qui) ;
+SELECT Rel IF (-1C N) (0 Que OR Qui) (NOT -1* Ne) ;
+SELECT Rel IF (-2C N) (-1 A) (0 Que OR Qui) ;
+SELECT Rel IF (-3 N) (-2 Adv_PreAdv) (-1 A) (0 Que OR Qui) ;
+
+SELECT CnjSub IF (-2 Ne) (-1 Verb) (0 Que) ;
+SELECT CnjSub IF (-3 Ne) (-2 Verb) (-1 Adv) (0 Que) ;
+SELECT CnjSub IF (-4 Ne) (-3 Verb) (-2 Prep) (-1 N) (0 Que) ;
+  ## ne pense qu'à
+  ## n'est en service que
+SELECT CnjSub IF (-3 Ne) (-2 Haver OR Ser) (-1 PP) (0 Que) ;
+SELECT CnjSub IF (-4 Ne) (-3 Haver OR Ser) (-2 Adv) (-1 PP) (0 Que) ;
+SELECT CnjSub IF (-5 Ne) (-4 Haver OR Ser) (-3 Prep) (-2 N) (-1 PP) (0 Que) ;
+SELECT CnjSub IF (-5 Ne) (-4 Haver OR Ser) (-3 PP) (-2 Prep) (-1 N) (0 Que) ;
+  ## n'a pensé qu'à
+SELECT CnjSub IF (-3 Ne) (-2 Vbmod) (-1 Inf) (0 Que) ;
+SELECT CnjSub IF (-4 Ne) (-3 Vbmod) (-2 Adv) (-1 Inf) (0 Que) ;
+SELECT CnjSub IF (-5 Ne) (-4 Vbmod) (-3 Prep) (-2 N) (-1 Inf) (0 Que) ;
+SELECT CnjSub IF (-5 Ne) (-4 Vbmod) (-3 Inf) (-2 Prep) (-1 N) (0 Que) ;
+  ## ne peut être que
+SELECT CnjSub IF (-4 Ne) (-3 Haver) (-2 Vbmod + PP) (-1 Inf) (0 Que) ;
+SELECT CnjSub IF (-5 Ne) (-4 Haver) (-3 Vbmod + PP) (-2 Adv) (-1 Inf) (0 Que) ;
+SELECT CnjSub IF (-6 Ne) (-5 Haver) (-4 Vbmod + PP) (-3 Prep) (-2 N) (-1 Inf) (0 Que) ;
+SELECT CnjSub IF (-6 Ne) (-5 Haver) (-4 Vbmod + PP) (-2 Inf) (-2 Prep) (-1 N) (0 Que) ;
+  ## n'a pu être que
+
+SELECT Verb IF (-1 Qui) (0 Verb + P3) ;
+  ## qui fait que
 
 SELECT A IF (0 ("petit")) (1 N OR Verb) ;
   ## un petit groupe
@@ -457,12 +662,22 @@ SELECT Verb IF (-3 ("qui")) (-2 Adv) (-1 Pro) (0C N OR Verb) ;
 
 SELECT Tn IF (0 Lui OR Nous OR Vous) (1 Aussi);
 SELECT Tn IF (0 Lui OR Nous OR Vous) (1 Même);
-SELECT Tn IF (0 Lui OR Nous OR Vous) (-1C Prep OR ("contre") OR ("devant") OR ("derrière") OR ("en")) (NOT 1 Inf);
-SELECT Pro IF (0 Lui OR Nous OR Vous) (-1C Prep OR ("contre") OR ("devant") OR ("derrière") OR ("en")) (1 Inf);
+SELECT Tn IF (0 Lui OR Nous OR Vous) (1 Qui);
+SELECT Tn IF (0 Lui OR Nous OR Vous) (1 Que);
+SELECT Tn IF (0 Lui OR Nous OR Vous) (-1C Prep OR Pour OR ("contre") OR ("devant") OR ("derrière") OR ("en")) (NOT 1 Inf);
+SELECT Pro IF (0 Lui OR Nous OR Vous) (-1C Prep OR Pour OR ("contre") OR ("devant") OR ("derrière") OR ("en")) (1 Inf);
 SELECT Prep IF (0 ("contre") OR ("devant") OR ("derrière") OR ("en")) (1 Lui OR Nous OR Vous) ;
   ## Il s'impose devant lui
-SELECT Pro IF (0 Lui OR Nous OR Vous) (-1C Tn OR ("on")) (1 Verb);
+#SELECT Pron IF (0 Lui) (1C Verb) ;
+SELECT Pro IF (0 Lui) (1C Verb) ;
+#SELECT Pro IF (0 Lui) (1C Imper) ;
+SELECT Pro IF (0 Lui OR Nous OR Vous) (-1C Tn OR On) (1 Verb);
   ## on lui connaît
+SELECT Tn IF (0 Lui OR Nous OR Vous) (-1 BOS OR Cm) (1 Cm);
+  ## il pense, lui, que...
+
+SELECT Det IF (0 Leur) (1 A) ;
+  ## pour leur premère participation
 
 SELECT Tn IF (-3 ("plus") OR ("moins")) (-2 A OR PP OR Adv) (-1 Que) (0 Lui OR Nous OR Vous) ;
   ## plus rapide que lui
@@ -496,13 +711,13 @@ SELECT Pro IF (-1 Tu) (0 Pro) (1 Pro) (2 VSg2);
   ## Tu nous en parles
 SELECT Pro IF (-2 Tu) (-1 Ne) (0 Pro) (1 Pro) (2 VSg2);
   ## Tu ne nous en parles pas
-SELECT Pro IF (-1 Il + Sg) (0 Pro) (1 VSg3);
+SELECT Pro IF (-1 Il + Sg OR On) (0 Pro) (1 VSg3);
   ## Elle vous parle
-SELECT Pro IF (-2 Il + Sg) (-1 Ne) (0 Pro) (1 VSg3);
+SELECT Pro IF (-2 Il + Sg OR On) (-1 Ne) (0 Pro) (1 VSg3);
   ## Elle ne vous parle pas
-SELECT Pro IF (-1 Il + Sg) (0 Pro) (1 Pro) (2 VSg3);
+SELECT Pro IF (-1 Il + Sg OR On) (0 Pro) (1 Pro) (2 VSg3);
   ## Elle vous en parle
-SELECT Pro IF (-2 Il + Sg) (-1 Ne) (0 Pro) (1 Pro) (2 VSg3);
+SELECT Pro IF (-2 Il + Sg OR On) (-1 Ne) (0 Pro) (1 Pro) (2 VSg3);
   ## Elle ne vous en parle pas
 SELECT Pro IF (-1 Nous) (0 Pro) (1 VPl1);
   ## Nous vous parlons
@@ -542,8 +757,12 @@ SELECT P1 IF (-3 Je) (-2 Pro) (-1 Pro) (0 VSg1);
   ## Je lui en veux
 SELECT P1 IF (-4 Je) (-3 Ne) (-2 Pro) (-1 Pro) (0 VSg1);
   ## Je ne lui en veux pas
+REMOVE P1 + Sg IF (NOT -1* Je) (0 Verb + P1 + Sg) ;
+
 SELECT P2 IF (-1 Tu) (0 VSg2);
   ## Tu veux
+SELECT P2 IF (1 Tu) (0 VSg2);
+  ## Veux-tu
 SELECT P2 IF (-2 Tu) (-1 Ne) (0 VSg2);
   ## Tu ne veux pas
 SELECT P2 IF (-2 Tu) (-1 Pro) (0 VSg2);
@@ -554,17 +773,21 @@ SELECT P2 IF (-3 Tu) (-2 Pro) (-1 Pro) (0 VSg2);
   ## Tu lui en veux
 SELECT P2 IF (-4 Tu) (-3 Ne) (-2 Pro) (-1 Pro) (0 VSg2);
   ## Tu ne lui en veux pas
-SELECT P3 IF (-1 Il + Sg) (0 VSg3);
+REMOVE P2 + Sg IF (NOT -1* Tu) (0 Verb + P2 + Sg) (NOT 0 Verb + P2 + Sg + Imper) ;
+
+SELECT P3 IF (-1 Il + Sg OR On) (0 VSg3);
   ## Elle parle
-SELECT P3 IF (-2 Il + Sg) (-1 Ne) (0 VSg3);
+SELECT P3 IF (1 Il + Sg OR On) (0 VSg3);
+  ## Parle-t-elle
+SELECT P3 IF (-2 Il + Sg OR On) (-1 Ne) (0 VSg3);
   ## Elle ne parle pas
-SELECT P3 IF (-2 Il + Sg) (-1 Pro) (0 VSg3);
+SELECT P3 IF (-2 Il + Sg OR On) (-1 Pro) (0 VSg3);
   ## Elle lui parle
-SELECT P3 IF (-3 Il + Sg) (-2 Ne) (-1 Pro) (0 VSg3);
+SELECT P3 IF (-3 Il + Sg OR On) (-2 Ne) (-1 Pro) (0 VSg3);
   ## Elle ne lui parle pas
-SELECT P3 IF (-3 Il + Sg) (-2 Pro) (-1 Pro) (0 VSg3);
+SELECT P3 IF (-3 Il + Sg OR On) (-2 Pro) (-1 Pro) (0 VSg3);
   ## Elle lui en parle
-SELECT P3 IF (-4 Il + Sg) (-3 Ne) (-2 Pro) (-1 Pro) (0 VSg3);
+SELECT P3 IF (-4 Il + Sg OR On) (-3 Ne) (-2 Pro) (-1 Pro) (0 VSg3);
   ## Elle ne lui en parle pas
 
 SELECT Tn IF (NOT -1 Prn) (0 Nous) (1 VPl1);
@@ -576,21 +799,45 @@ SELECT PP IF (-1 Haver) (0 PP) ;
   ## Vous avez dit
 SELECT PP IF (-2 Haver) (-1C Adv) (0 PP) ;
   ## Vous avez toujours dit
-SELECT Sg IF (NOT -2 Pro) (-1 Haver) (0 PP + Sg_Pl) ; 
+SELECT Sg IF (-1 Ser + Sg) (0 PP + Sg) (NOT -2 Haver) ;
+  ## est pris
+SELECT Pl IF (-1 Ser + Pl) (0 PP + Pl) (NOT -2 Haver) ;
+  ## sont pris
+SELECT Sg IF (-2 Ser + Sg) (-1 Adv) (0 PP + Sg) (NOT -3 Haver) ;
+  ## n'est pas pris
+SELECT Pl IF (-2 Ser + Pl) (-1 Adv) (0 PP + Pl) (NOT -3 Haver) ;
+  ## ne sont pas pris
+SELECT Sg IF (-3 Ser + Sg) (-2 Adv) (-1 Adv) (0 PP + Sg) (NOT -4 Haver) ;
+  ## n'est pas toujours pris
+SELECT Pl IF (-3 Ser + Pl) (-2 Adv) (-1 Adv) (0 PP + Pl) (NOT -4 Haver) ;
+  ## ne sont pas toujours pris
+SELECT Sg IF (-2 Haver + Sg) (-1 Ser + PP) (0 PP + Sg) ;
+  ## a été pris
+SELECT Pl IF (-2 Haver + Pl) (-1 Ser + PP) (0 PP + Pl) ;
+  ## ont été pris
+SELECT Sg IF (-3 Haver + Sg) (-2 Adv) (-1 Ser + Sg) (0 PP + Sg) ;
+  ## n'a pas été pris
+SELECT Pl IF (-3 Haver + Pl) (-2 Adv) (-1 Ser + Pl) (0 PP + Pl) ;
+  ## n'ont pas été pris
+SELECT Sg IF (-4 Haver + Sg) (-3 Adv) (-2 Ser + Sg) (-1 Adv) (0 PP + Sg) ;
+  ## n'a pas été toujours pris
+SELECT Pl IF (-4 Haver + Pl) (-3 Adv) (-2 Ser + Pl) (-1 Adv) (0 PP + Pl) ;
+  ## n´oont pas été toujours pris
+SELECT Sg IF (NOT -2 Pro) (-1 Haver) (0 PP + Sg_Pl) ;
   ## Vous avez pris
-SELECT Sg IF (NOT -3 Pro) (-2 Haver) (-1C Adv) (0 PP + Sg_Pl) ; 
+SELECT Sg IF (NOT -3 Pro) (-2 Haver) (-1C Adv) (0 PP + Sg_Pl) ;
   ## Vous avez toujours pris
-SELECT Sg IF (-2 Pro + Sg) (-1 Haver) (0 PP + Sg_Pl) ; 
+SELECT Sg IF (-2 Pro + Sg) (-1 Haver) (0 PP + Sg_Pl) ;
   ## Vous lui avez pris
-SELECT Pl IF (-2 Pro + Pl) (-2 ("le")) (-1 Haver) (0 PP + Sg_Pl) ; 
+SELECT Pl IF (-2 Pro + Pl) (-2 ("le")) (-1 Haver) (0 PP + Sg_Pl) ;
   ## Vous les avez pris
-SELECT Sg IF (-2 Pro + Pl) (-2 ("leur")) (-1 Haver) (0 PP + Sg_Pl) ; 
+SELECT Sg IF (-2 Pro + Pl) (-2 ("leur")) (-1 Haver) (0 PP + Sg_Pl) ;
   ## Vous leur avez pris
-SELECT Sg IF (-3 Pro + Sg) (-2 Haver) (-1C Adv) (0 PP + Sg_Pl) ; 
+SELECT Sg IF (-3 Pro + Sg) (-2 Haver) (-1C Adv) (0 PP + Sg_Pl) ;
   ## Vous lui avez toujours pris
-SELECT Pl IF (-3 Pro + Pl) (-3 ("le")) (-2 Haver) (-1C Adv) (0 PP + Sg_Pl) ; 
+SELECT Pl IF (-3 Pro + Pl) (-3 ("le")) (-2 Haver) (-1C Adv) (0 PP + Sg_Pl) ;
   ## Vous les avez toujours pris
-SELECT Sg IF (-3 Pro + Pl) (-3 ("leur")) (-2 Haver) (-1C Adv) (0 PP + Sg_Pl) ; 
+SELECT Sg IF (-3 Pro + Pl) (-3 ("leur")) (-2 Haver) (-1C Adv) (0 PP + Sg_Pl) ;
   ## Vous leur avez toujours pris
 SELECT PP IF (-3 Ne) (-2 Haver) (0 PP) ;
   ## Vous n'avez pas dit
@@ -600,7 +847,7 @@ SELECT Sg IF (-3 Ne) (-2 Haver) (0 PP + Sg_Pl) ;
   ## Vous n'avez pas pris
 SELECT Sg IF (-4 Ne) (-3 Haver) (-2 Pas) (-1C Adv) (0 PP + Sg_Pl) ;
   ## Vous n'avez pas toujours pris
-SELECT PP IF (-4 Ne) (-3 Pro) (-2 Haver) (0 PP) ;
+SELECT PP IF (-4 Ne) (-3 Pro) (-2 Haver) (1 Adv) (0 PP) ;
   ## Vous ne lui avez pas dit
 SELECT PP IF (-5 Ne) (-4 Pro) (-3 Haver) (-2 Pas) (-1C Adv) (0 PP) ;
   ## Vous ne lui avez pas toujours dit
@@ -633,6 +880,44 @@ SELECT Pl IF (-6 Ne) (-5 Pro + Pl) (-4 Pro) (-3 Haver) (-2 Pas) (-1C Adv) (0 PP 
 #SELECT PP IF (-5 Ne) (-4 Pro) (-3 Haver) (-2 Adv) (-1 Adv) (0 PP) ;
 #SELECT Haver IF (-2 Ne) (-1 Pro) (-0 Haver) (1 Adv) (2 Adv) (3 PP) ;
 #  ## Vous ne lui avez pas toujours dit
+SELECT PP IF (-2 Ne) (-1 Ser) (0 PP) (1 Que) ;
+  ## n'est accordé qu'aux entreprises
+SELECT PP IF (-3 Ne) (-2 Adv) (-1 Ser) (0 PP) (1 Que) ;
+  ## n'est plus accordé qu'aux entreprises
+
+SELECT Masc IF (-1 Haver) (0 PP + M_F) ;
+  ## Vous avez pu
+SELECT Masc IF (-2 Haver) (-1C Adv) (0 PP + M_F) ;
+  ## Vous avez toujours pu
+
+SELECT PP IF (-2 ("se")) (-1 Ser + Sg) (0 PP + Sg) ;
+  ## s'est mouillé
+SELECT PP IF (-2 ("se")) (-1 Ser + Pl) (0 PP + Pl) ;
+  ## se sont mouillés
+SELECT PP IF (-3 ("se")) (-2 Ser + Sg) (-1 Adv) (0 PP + Sg) ;
+  ## ne s'est pas mouillé
+SELECT PP IF (-3 ("se")) (-2 Ser + Pl) (-1 Adv) (0 PP + Pl) ;
+  ## ne se sont pas mouillés
+SELECT PP IF (-4 ("se")) (-3 Ser + Sg) (-2 Adv) (-1 Adv) (0 PP + Sg) ;
+  ## ne s'est pas bien mouillé
+SELECT PP IF (-4 ("se")) (-3 Ser + Pl) (-2 Adv) (-1 Adv) (0 PP + Pl) ;
+  ## ne se sont pas bien mouillés
+
+SELECT PP IF (-2 Haver + Sg) (-1 Ser + PP) (0 PP + Sg) ;
+SELECT PP IF (-2 Haver + Pl) (-1 Ser + PP) (0 PP + Pl) ;
+  ## ha été nommé
+SELECT PP IF (-3 Haver + Sg) (-2 Adv) (-1 Ser + PP) (0 PP + Sg) ;
+SELECT PP IF (-3 Haver + Pl) (-2 Adv) (-1 Ser + PP) (0 PP + Pl) ;
+  ## n'a pas été nommé
+SELECT PP IF (-4 Haver + Sg) (-3 Adv) (-2 Ser + PP) (-1 Adv) (0 PP + Sg) ;
+SELECT PP IF (-4 Haver + Pl) (-3 Adv) (-2 Ser + PP) (-1 Adv) (0 PP + Pl) ;
+  ## n'a pas été bien nommé
+
+SELECT PP IF (-1 Ser) (0 ("fini")) ;
+SELECT PP IF (-2 Ser) (-1 Adv) (0 ("fini")) ;
+SELECT PP IF (-3 Ser) (-2 Adv) (-1 Adv) (0 ("fini")) ;
+  ## c'est fini
+
 
 SELECT Prep IF (0 ("après")) (1 Inf) ;
   ## . Après avoir parcouru
@@ -647,6 +932,8 @@ SELECT N IF (-1 Det) (0 Ete) ;
   ## cet été
 SELECT N IF (-1 Prep) (0 Ete) ;
   ## vacances d'été
+SELECT Ser IF (-1 Adv) (0 Ete) (1 PP);
+  ## a lui aussi été refait
 
 SELECT Tn IF (-1 Barrera_Inicial_Estrict_SN OR CM) (0C Tn OR Pro) (1C Verb) ;
   ## que nous avons apris
@@ -655,6 +942,21 @@ SELECT Tn IF (-1 Barrera_Inicial_Estrict_SN OR CM) (0C Tn OR Pro) (1 Adv) (2C Ve
 
 SELECT Prep IF (0 En) (1C N OR A) ;
 SELECT Prep IF (0 En) (1C Num) ;
+REMOVE Pro IF (0 En) (1 V) (NOT 1 Pers OR Inf OR Ger) (NOT 1 Pro);
+  ## passer en revue
+REMOVE Pro IF (0 En) (NOT 1 V OR Pro);
+  ## sont en Inde
+REMOVE Pro IF (0 En) (1 Ger);
+  ## en passant
+REMOVE Pro IF (0 En) (1 Pro) (2 Ger);
+  ## en se dirigeant
+SELECT Prep IF (0 En) (-1 ("prendre")) ;
+  ## prendre en compte, prendre en consideration
+SELECT Prep IF (0 En) (-1 Verb + Pers) (1 N) (NOT 1 Ger) ;
+  ## lui donne en référence
+SELECT Prep IF (0 En) (-2 Ser OR Haver) (-1 PP ) (1 N) (NOT 1 Ger) ;
+SELECT Prep IF (0 En) (-3 Ser OR Haver) (-2 Adv) (-1 PP ) (1 N) (NOT 1 Ger) ;
+  ## lui est donné en référence
 
 SELECT N IF (0 N OR A) (-1C Peu) (1 EOS) ;
 	  ## peu de joueurs.
@@ -665,16 +967,26 @@ SELECT N IF (-1 Num) (0 ("seconde")) ;
 
 SELECT Interj IF (0 Helas) ;
   ## triem ser hélas com a interjecció
+SELECT Interj IF (0 ("adieu")) (NOT -1 Det OR A);
 REMOVE Interj IF (0 ("bon")) (1 N) ;
 SELECT A IF (0 ("bon")) (1C N) ;
   ## un bon jour
 
+SELECT CnjAdv IF (0 Si) (1 Prn) ;
+SELECT CnjAdv IF (0 Si) (1 Det) ;
+SELECT PreAdv IF (0 Si) (1 A) ;
+
+REMOVE Det IF (0 Prn OR Det) (1C Prep) (NOT 0 DetDef) ;
+  ## Aucune des 200 communes
+REMOVE Adv IF (-1C Det OR Prn) (0 Adv OR N) (1C Prep) ;
+  ## ce point de vue
+
 SELECT Adv IF (-1 Des) (0 Verb OR Adv) ;
   ## dès maintenant
 
-SELECT Prep IF (0 Entre) (1 Nous OR Vous OR Eux);
+SELECT Prep IF (0 Entre OR Contre) (1 Nous OR Vous OR Eux);
   ## entre nous, vous, eux, elles
-SELECT Prep IF (0 Entre) (1 Il + Pl + Fem);
+SELECT Prep IF (0 Entre OR Contre) (1 Il + Pl + Fem);
   ## entre elles
 #SELECT Prep IF (-2C Prep) (-1C N) (0 Entre) (1 Det) (2 N OR A) ;
   ## ne fait pas de différence entre les tyrannies
@@ -688,25 +1000,47 @@ SELECT Prep (0 Pendant) (-1 BOS) ;
   ## Pendant la Première Guerre Mondiale
 SELECT Prep (0 Pendant) (1 ("de")) (2 A OR N) ;
   ## pendant de nombreuses années
+SELECT Prep (0 Pendant) (1 ("près de")) (2 A OR N OR Num) ;
+  ## la guerre continue pendant près de cinq ans
 REMOVE V (0 Pendant) (*-1 Verb BARRIER Cnj_Rel) ;  # no funciona sempre
 REMOVE V (0 Pendant) (*1 Verb BARRIER Cnj_Rel) ;
+
+SELECT Prep (0 Contre) (-1 BOS) ;
+REMOVE V (0 Contre) (*-1 Verb BARRIER Cnj_Rel) ;  # no funciona sempre
+REMOVE V (0 Contre) (*1 Verb BARRIER Cnj_Rel) ;
+
+## Ces règles ne sont pas en train de marcher
+SELECT Verb (0 Puis) (-1 Je);
+SELECT Verb (0 Puis) (1 Je) (NOT 1 Verb + P1) ;
+SELECT Verb (0 Puis) (1 Je LINK NOT 1 Verb + P1) (1 Je LINK NOT 2 Verb + P1);
+SELECT Verb (0 Puis) (-2 Je) (-1 Ne) ;
+REMOVE Verb (0 Puis) (NOT -2 Je) (NOT -1 Je) (NOT 1 Je) ;
+REMOVE Verb (0 Puis) (1 Je) (2 Verb + P1) ;
+REMOVE Verb (0 Puis) (1 Je) (2 Adv) (3 Verb + P1) ;
+
+REMOVE A (0 Continuer OR Continu) (*-1 Verb BARRIER Cnj_Rel) ;  # no funciona sempre
+REMOVE A (0 Continuer OR Continu) (*1 Verb BARRIER Cnj_Rel) ;
+  ## la guerre continue pendant près de cinq ans
 
 SELECT N (-1 ("en")) (0 ("or")) ;
 
 SELECT PreAdv IF (0 Si) (1 Adv OR PreAdv);
   ## si bien / si mal
-SELECT PreAdv IF (0 Si) (1C A) (2 ("que")) ;
+SELECT PreAdv IF (0 Si) (1C A) (2 Que) ;
   ## si intelligente que
-SELECT PreAdv IF (0 Si) (1C A) (2C Prep) ;
+SELECT PreAdv IF (0 Si) (1C A) (2C Prep OR Pour) ;
   ## si différents dans le monde
 SELECT CnjAdv IF (-1 BOS) (0 Si) (1 Det OR Tn) ;
   ## Si la demande nationale est suffisante
+
+SELECT N IF (-1 Prep) (0 ("or")) ;
+SELECT N IF (-1 Det) (0 ("or")) ;
 
 SELECT Adv IF (-1 Si) (0 Adv OR PreAdv);
   ## si bien / si mal
 REMOVE PreAdv IF (0 Adv OR PreAdv) (1 EOS OR CM) ;
   ## on fait bien
-REMOVE PreAdv IF (0 Adv OR PreAdv) (1C Prep) ;
+REMOVE PreAdv IF (0 Adv OR PreAdv) (1C Prep OR Pour) ;
   ## c'est bien de
 REMOVE PreAdv IF (0 Adv OR PreAdv) (1C V LINK NOT 0 PP) ;
   ## c'est bien regarder des choses
@@ -727,10 +1061,10 @@ REMOVE PreAdv IF (-1 PreAdv) (0 A OR PP OR PreAdv) (NOT 1 A OR PP) ;
 SELECT Prn IF (0 S) (NOT 1 Il) ;
 SELECT CnjAdv IF (0 S) (1 Il) ;
   ## s'affirme
-REMOVE CnjAdv IF (-1C Prep) (0 N) (1C Prep) ;
+REMOVE CnjAdv IF (-1C Prep OR Pour) (0 N) (1C Prep OR Pour) ;
   ## une medaille d'or de piano
 
-SELECT Adv IF (-1 BOS) (0 Adv OR A) (1C Prep) ;
+SELECT Adv IF (-1 BOS) (0 Adv OR A) (1C Prep OR Pour) ;
   ## Même sur le terrain
 SELECT Adv IF (-1 BOS OR CM) (0C A OR Adv) (1C Det) ;
   ## Même le temps était
@@ -738,6 +1072,10 @@ SELECT Adv IF (-1 BOS OR CM) (0C A OR Adv) (1 ("en")) ;
   ## Même en se partageant
 SELECT Adv IF (-1C Verb) (0 Même) (1 Prep) ;
   ## il va même jusqu'à donner
+
+SELECT Acr OR Al IF (0 Majusc) ;
+SELECT N IF (0 MajuscInitiale) (0C N OR A) (NOT -1 BOS OR MajuscInitiale) (NOT 1 MajuscInitiale) ;
+  ## ces ingrats d'Européens.
 
 SELECT Masc_strict IF (0 Mon_Ton_Son) (1 ConsInitiale) ;
   ## mon père
@@ -750,11 +1088,18 @@ SELECT Masc_strict IF (0 Mon_Ton_Son) (NOT 1 ConsInitiale) (1 Noun_Adj_PP + Masc
 SELECT Fem_strict IF (0 Mon_Ton_Son) (NOT 1 ConsInitiale) (1 Noun_Adj_PP + Fem) (2 Noun_Adj_PP + Fem) (3C Fem_strict) ;
 SELECT Masc_strict IF (0 Mon_Ton_Son) (NOT 1 ConsInitiale) (1 Noun_Adj_PP + Masc) (2 Noun_Adj_PP + Masc) (3C Masc_strict) ;
 
-SELECT Masc IF (-1 Det + Masc_strict) (0C N OR A + Masc LINK 0 Fem) ;
+SELECT Masc IF (-1/* Det + Masc_strict) (0C N OR A + Masc LINK 0 Fem) ;
 SELECT Masc IF (-1 A + Masc_strict) (0C N OR A + Masc LINK 0 Fem) ;
-SELECT Fem IF (-1 Det + Fem_strict) (0C N OR A + Fem LINK 0 Masc) ;
+SELECT Fem IF (-1/* Det + Fem_strict) (0C N OR A + Fem LINK 0 Masc) ;
 SELECT Fem IF (-1 A + Fem_strict) (0C N OR A + Fem LINK 0 Masc) ;
   ## le primer tour
+
+REMOVE Adv IF (-1C/* Det) (0C N OR Adv);
+REMOVE Adv IF (-1C Det + MascSg) (0C N + MascSg OR Adv);
+REMOVE Adv IF (-1C Det + FemSg) (0C N + FemSg OR Adv);
+REMOVE Adv IF (-1C Det + MascPl) (0C N + MascPl OR Adv);
+REMOVE Adv IF (-1C Det + FemPl) (0C N + FemPl OR Adv);
+  ## par l'ensemble des
 
 SELECT N IF (-1C V) (0C N OR PP) (1 Prep) ;
   ## porter plainte contre
@@ -820,7 +1165,78 @@ SELECT N OR NP IF (-1/* Barrera_Inicial_Estrict_SN) (0 Noun_Adj_PP + Pl) (1C V +
 SELECT Ger IF (-1 ("en")) (0C Ger OR Noun_Adj_PP) (1 Det) ;
 # en voyant son cartable
 
+SELECT A IF (-2 Det + MascSg) (-1 N + MascSg) (0 ("suivant")) ;
+SELECT A IF (-2 Det + MascPl) (-1 N + MascPl) (0 ("suivant")) ;
+SELECT A IF (-2 Det + FemSg) (-1 N + FemSg) (0 ("suivant")) ;
+SELECT A IF (-2 Det + FemPl) (-1 N + FemPl) (0 ("suivant")) ;
+
+REMOVE Ger IF (-1 BOS) (0 Prep OR Ger) ;
+  ## Suivant le besoin
+REMOVE Ger IF (-1 Verb + Pers) (0 Prep OR Ger) ;
+  ## on l'utilise suivant des critères
+  ## on l'utilise maintenant
+
+REMOVE Ger IF (-1 ("nommer") OR ("appeler")) (0 Ger OR N OR A) ;
+  ## nommé dirigeant
+
+REMOVE Ger IF (-1 ("plus") OR ("moins")) (0 Ger OR A OR PP) ;
+  ## plus exigeant
+
+REMOVE A IF (-1 BOS) (0 Prep) (0 A) (1 Det) ;
+REMOVE N IF (-1 BOS) (0 Prep) (0 N) (1 Det) ;
+  ## Suivant le besoin
+REMOVE A IF (-1 BOS) (0 ("suivant")) (0 A) (1 ("de")) ;
+REMOVE N IF (-1 BOS) (0 ("suivant")) (0 N) (1 ("de")) ;
+  ## Suivant des besoins
+REMOVE A IF (-1 Verb + Pers) (0 ("suivant")) (0 A) (1 ("de")) ;
+REMOVE N IF (-1 Verb + Pers) (0 ("suivant")) (0 N) (1 ("de")) ;
+  ## Suivant des besoins
+
+# DET
+
+REMOVE Pro IF (0 Le) (NOT 1 Verb OR ("lui") OR ("leur")) ;
+  ## Le chien aime jouer avec les deux enfants.
+  ## je le lui donne, je le leur donne
+
+SELECT Det IF (0 DetInd + MascSg) (1 N + MascSg) ;
+SELECT Det IF (0 DetInd + FemSg) (1 N + FemSg) ;
+SELECT Det IF (0 DetInd + MascPl) (1 N + MascPl) ;
+SELECT Det IF (0 DetInd + FemPl) (1 N + FemPl) ;
+  ## un enfant
+SELECT Det IF (0 DetInd + MascSg) (1 A + MascSg) ;
+SELECT Det IF (0 DetInd + FemSg) (1 A + FemSg) ;
+SELECT Det IF (0 DetInd + MascPl) (1 A + MascPl) ;
+SELECT Det IF (0 DetInd + FemPl) (1 A + FemPl) ;
+  ## un jaune
+SELECT Det IF (0 DetInd + MascSg) (1 A + MascSg) (2 N + MascSg) ;
+SELECT Det IF (0 DetInd + FemSg) (1 A + FemSg) (2 N + FemSg) ;
+SELECT Det IF (0 DetInd + MascPl) (1 A + MascPl) (2 N + MascPl) ;
+SELECT Det IF (0 DetInd + FemPl) (1 A + FemPl) (2 N + FemPl) ;
+  ## Crewdson signe un long article
+SELECT Det IF (0 DetInd + MascSg) (1 Adv_PreAdv) (2 A + MascSg) (3 N + MascSg) ;
+SELECT Det IF (0 DetInd + FemSg) (1 Adv_PreAdv) (2 A + FemSg) (3 N + FemSg) ;
+SELECT Det IF (0 DetInd + MascPl) (1 Adv_PreAdv) (2 A + MascPl) (3 N + MascPl) ;
+SELECT Det IF (0 DetInd + FemPl) (1 Adv_PreAdv) (2 A + FemPl) (3 N + FemPl) ;
+  ## Crewdson signe un trèslong article
+
+SELECT Num IF (-1 ("numéro")) (0 Un);
+REMOVE Num IF (NOT -1 ("numéro")) (0 Un);
+
+# ADJ OR ADV
+REMOVE Adv IF (-1 Det + MascSg) (0 A + MascSg) (0 Adv) (1 N + MascSg) (NOT 1 A) ;
+REMOVE Adv IF (-1 Det + FemSg) (0 A + FemSg) (0 Adv) (1 N + FemSg) (NOT 1 A) ;
+REMOVE Adv IF (-1 Det + MascPl) (0 A + MascPl) (0 Adv) (1 N + MascPl) (NOT 1 A) ;
+REMOVE Adv IF (-1 Det + FemPl) (0 A + FemPl) (0 Adv) (1 N + FemPl) (NOT 1 A) ;
+  ## un vrai travail
+
 # ADJ NOM
+SELECT N IF (-1 En) (0C N OR A) (NOT 1 N) ;
+  ## en français
+SELECT A IF (-1C N + MascSg) (0C N OR A + MascSg) (1 unknown) ;
+SELECT A IF (-1C N + MascPl) (0C N OR A + MascPl) (1 unknown) ;
+SELECT A IF (-1C N + FemSg) (0C N OR A + FemSg) (1 unknown) ;
+SELECT A IF (-1C N + FemPl) (0C N OR A + FemPl) (1 unknown) ;
+  ## en langue aborigène xxx
 
 REMOVE N OR NP IF (-1/* Barrera_Inicial_Estrict_SN) (0 Noun_Adj_PP + MascSg LINK 0 N OR NP) (1C N + MascSg) ;
 REMOVE N OR NP IF (-1/* Barrera_Inicial_Estrict_SN) (0 Noun_Adj_PP + MascPl LINK 0 N OR NP) (1C N + MascPl) ;
@@ -894,6 +1310,20 @@ REMOVE A OR PP IF (NOT -1 N OR A OR PP OR Ser) (0 Noun_Adj + MascSg LINK 0 N OR 
 REMOVE A OR PP IF (NOT -1 N OR A OR PP OR Ser) (0 Noun_Adj + MascPl LINK 0 N OR NP) (NOT 0 Trencat) (1 Adj_PP + MascPl) ;
 REMOVE A OR PP IF (NOT -1 N OR A OR PP OR Ser) (0 Noun_Adj + FemSg LINK 0 N OR NP) (1 Adj_PP + FemSg) ;
 REMOVE A OR PP IF (NOT -1 N OR A OR PP OR Ser) (0 Noun_Adj + FemPl LINK 0 N OR NP) (1 Adj_PP + FemPl) ;
+REMOVE N IF (-2 Det + MascSg) (-1C N + MascSg) (0 Adj_PP + MascSg) ;
+REMOVE N IF (-2 Det + MascPl) (-1C N + MascPl) (0 Adj_PP + MascPl) ;
+REMOVE N IF (-2 Det + FemSg) (-1C N + FemSg) (0 Adj_PP + FemSg) ;
+REMOVE N IF (-2 Det + FemPl) (-1C N + FemPl) (0 Adj_PP + FemPl) ;
+# l'armée perse
+REMOVE A OR PP IF (-2 Det + MascSg) (-1C A + MascSg) (0 Noun_Adj + MascSg LINK 0 N OR NP) (NOT 0 Trencat) (1 Adj_PP + MascSg) ;
+REMOVE A OR PP IF (-2 Det + MascPl) (-1C A + MascPl) (0 Noun_Adj + MascPl LINK 0 N OR NP) (NOT 0 Trencat) (1 Adj_PP + MascPl) ;
+REMOVE A OR PP IF (-2 Det + FemSg) (-1C A + FemSg) (0 Noun_Adj + FemSg LINK 0 N OR NP) (1 Adj_PP + FemSg) ;
+REMOVE A OR PP IF (-2 Det + FemPl) (-1C A + FemPl) (0 Noun_Adj + FemPl LINK 0 N OR NP) (1 Adj_PP + FemPl) ;
+REMOVE N IF (-3 Det + MascSg) (-2 A + MascSg) (-1C N + MascSg) (0 Adj_PP + MascSg) ;
+REMOVE N IF (-3 Det + MascPl) (-2 A + MascPl) (-1C N + MascPl) (0 Adj_PP + MascPl) ;
+REMOVE N IF (-3 Det + FemSg) (-2 A + FemSg) (-1C N + FemSg) (0 Adj_PP + FemSg) ;
+REMOVE N IF (-3 Det + FemPl) (-2 A + FemPl) (-1C N + FemPl) (0 Adj_PP + FemPl) ;
+# l'immense armée perse
 
 REMOVE PP IF (NOT -1 N OR Haver OR Ser) (0 PP + MascSg LINK 0 N OR NP) (1 Adj_PP + MascSg) ;
 REMOVE PP IF (NOT -1 N OR Haver OR Ser) (0 PP + MascPl LINK 0 N OR NP) (1 Adj_PP + MascPl) ;
@@ -943,15 +1373,55 @@ SELECT A OR PP IF (-4 N + FemPl) (-3 N + FemPl) (-2 N + FemPl) (-1 Adj_PP + FemP
 
 # NOM ADV ADJ
 
-SELECT A IF (-2C N + MascSg) (-1C Adv) (0 A + MascSg LINK NOT 0 Det) ;
-SELECT A IF (-2C N + FemSg) (-1C Adv) (0 A + FemSg LINK NOT 0 Det) ;
-SELECT A IF (-2C N + MascPl) (-1C Adv) (0 A + MascPl LINK NOT 0 Det) ;
-SELECT A IF (-2C N + FemPl) (-1C Adv) (0 A + FemPl LINK NOT 0 Det) ;
+SELECT A IF (-2C N + MascSg) (-1C Adv) (0 A + MascSg LINK NOT 0 Det) (NOT 0 Verb + Pers) ;
+SELECT A IF (-2C N + FemSg) (-1C Adv) (0 A + FemSg LINK NOT 0 Det) (NOT 0 Verb + Pers) ;
+SELECT A IF (-2C N + MascPl) (-1C Adv) (0 A + MascPl LINK NOT 0 Det) (NOT 0 Verb + Pers) ;
+SELECT A IF (-2C N + FemPl) (-1C Adv) (0 A + FemPl LINK NOT 0 Det) (NOT 0 Verb + Pers) ;
 SELECT A IF (-3/* Barrera_Inicial_SN) (-2 N + MascSg) (-1C Adv) (0 A + MascSg LINK NOT 0 Det) ;
 SELECT A IF (-3/* Barrera_Inicial_SN) (-2 N + FemSg) (-1C Adv) (0 A + FemSg LINK NOT 0 Det) ;
 SELECT A IF (-3/* Barrera_Inicial_SN) (-2 N + MascPl) (-1C Adv) (0 A + MascPl LINK NOT 0 Det) ;
 SELECT A IF (-3/* Barrera_Inicial_SN) (-2 N + FemPl) (-1C Adv) (0 A + FemPl LINK NOT 0 Det) ;
 # ". Civiles étnicamente croatas"
 
+# A OR PP
+
+#SELECT PP IF (-1 Ser) (0 A OR PP) (1 ("par")) ;
+#SELECT PP IF (-2 Ser) (-1 Adv) (0 A OR PP) (1 ("par")) ;
+#SELECT PP IF (-2 Ser) (-1 Adv) (0 A OR PP) (1 Adv) (2 ("par")) ;
+SELECT PP IF (0 A OR PP) (1 ("par")) ;
+SELECT PP IF (0 A OR PP) (1 Adv) (2 ("par")) ;
+SELECT PP IF (-1 Ser) (-2 ("ne")) (0 A OR PP) (1 Que) (2 ("par")) ;
+# Les cours seront assurés par Michel Laine
+
+# V (P3) OR PP
+REMOVE PP IF (-1 N + MascSg) (0 V + P3 + Sg) (0 PP) (NOT 0 PP + MascSg) ;
+REMOVE PP IF (-1 N + MascPl) (0 V + P3 + Pl) (0 PP) (NOT 0 PP + MascPl) ;
+REMOVE PP IF (-1 N + FemSg) (0 V + P3 + Sg) (0 PP) (NOT 0 PP + FemSg) ;
+REMOVE PP IF (-1 N + FemPl) (0 V + P3 + Pl) (0 PP) (NOT 0 PP + FemPl) ;
+REMOVE PP IF (-4 N + MascSg) (-3 Prep) (-2 Det) (-1 N) (0 V + P3 + Sg) (0 PP) (NOT 0 PP + MascSg) ;
+REMOVE PP IF (-4 N + MascPl) (-3 Prep) (-2 Det) (-1 N) (0 V + P3 + Pl) (0 PP) (NOT 0 PP + MascPl) ;
+REMOVE PP IF (-4 N + FemSg) (-3 Prep) (-2 Det) (-1 N) (0 V + P3 + Sg) (0 PP) (NOT 0 PP + FemSg) ;
+REMOVE PP IF (-4 N + FemPl) (-3 Prep) (-2 Det) (-1 N) (0 V + P3 + Pl) (0 PP) (NOT 0 PP + FemPl) ;
+REMOVE PP IF (-5 N + MascSg) (-4 Prep) (-3 Det) (-2 N) (-1 A) (0 V + P3 + Sg) (0 PP) (NOT 0 PP + MascSg) ;
+REMOVE PP IF (-5 N + MascPl) (-4 Prep) (-3 Det) (-2 N) (-1 A) (0 V + P3 + Pl) (0 PP) (NOT 0 PP + MascPl) ;
+REMOVE PP IF (-5 N + FemSg) (-4 Prep) (-3 Det) (-2 N) (-1 A) (0 V + P3 + Sg) (0 PP) (NOT 0 PP + FemSg) ;
+REMOVE PP IF (-5 N + FemPl) (-4 Prep) (-3 Det) (-2 N) (-1 A) (0 V + P3 + Pl) (0 PP) (NOT 0 PP + FemPl) ;
+REMOVE PP IF (-5 N + MascSg) (-4 Prep) (-3 Det) (-2 A) (-1 N) (0 V + P3 + Sg) (0 PP) (NOT 0 PP + MascSg) ;
+REMOVE PP IF (-5 N + MascPl) (-4 Prep) (-3 Det) (-2 A) (-1 N) (0 V + P3 + Pl) (0 PP) (NOT 0 PP + MascPl) ;
+REMOVE PP IF (-5 N + FemSg) (-4 Prep) (-3 Det) (-2 A) (-1 N) (0 V + P3 + Sg) (0 PP) (NOT 0 PP + FemSg) ;
+REMOVE PP IF (-5 N + FemPl) (-4 Prep) (-3 Det) (-2 A) (-1 N) (0 V + P3 + Pl) (0 PP) (NOT 0 PP + FemPl) ;
+# la motorisation de ces pratiques réduit drastiquement leur population
+
 SELECT N IF (-1 ("par")) (0 ("personne")) ;
-REMOVE N IF (-1 ("pour")) (0 ("personne")) ;
+REMOVE N IF (-1 Pour) (0 ("personne")) ;
+
+SELECT Prn IF (0 ("certains")) (1C Verb LINK 0 Verb + Pl + Pers) ;
+SELECT Prn IF (0 ("certains")) (1 Adv) (2C Verb LINK 0 Verb + Pl + Pers) ;
+# certains ont la mine défaite
+REMOVE A IF (0 ("certains")) (NOT -1 N OR A) ;
+SELECT Det IF (0 ("certains")) (1 N) (NOT 1 Verb + Pl + Pers) (NOT 1 Adv) ;
+# que certains élus très proches
+
+SELECT N IF (-1 Num) (0 ("dixième") OR ("centième") OR ("millième")) ;
+
+REMOVE Verb IF (-1* NP BARRIER (*) - NP LINK -1 À) ;

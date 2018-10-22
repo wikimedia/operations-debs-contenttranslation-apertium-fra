@@ -76,6 +76,7 @@
       <e><i>hiéroglyphe</i></e>
       <e><i>hochet</i></e>
       <e><i>hockey</i></e>
+      <e><i>holding</i></e>
       <e><i>Hollande</i></e>
       <e><i>homard</i></e>
       <e><i>Hongrie</i></e>
@@ -264,8 +265,8 @@
       <e><p><l><a/>sa<b/></l><r>son<b/></r></p><par n="vocals"/></e>
       <e><p><l><a/>nouveau<b/></l><r>nouvel<b/></r></p><par n="vocals"/></e>
       <e><p><l><a/>le<b/><a/>nouveau<b/></l><r>le<b/>nouvel<b/></r></p><par n="vocals"/></e>
-      <e><p><l><a/>si<b/>il<b/></l><r>s'<b/>il<b/></r></p></e>
-      <e><p><l><a/>si<b/>ils<b/></l><r>s'<b/>ils<b/></r></p></e>
+      <e><p><l><a/>si<b/>il<b/></l><r>s'il<b/></r></p></e>
+      <e><p><l><a/>si<b/>ils<b/></l><r>s'ils<b/></r></p></e>
 
 <!-- para cambiar la preposición "en" por "dans"; ahora se hace en el transfer
       <e><p><l><a/>en<b/><a/>le<b/></l><r>dans<b/>l'</r></p><par n="vocals"/></e>
